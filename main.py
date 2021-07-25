@@ -101,7 +101,7 @@ def main():
 
         params = (
             ('avsdata',
-             '{"firstname":"Evan","lastname":"Wohl","address1":"21 Quaker Lane","address2":"","city":"Chappaqua","postalCode":"10514","state":"NY","country":"US"}'),
+             '{"firstname":"Evan","lastname":"","address1":"","address2":"","city":"","postalCode":"","state":"NY","country":"US"}'),
         )
 
         response = s.get('https://catalog.usmint.gov/on/demandware.store/Sites-USM-Site/default/AVS-ajax',
@@ -182,7 +182,7 @@ def main():
             ('dwfrm_billing_billingAddress_addressFields_zip', f'{postal}'),
             ('dwfrm_billing_billingAddress_addressFields_country', 'US'),
             ('dwfrm_billing_billingAddress_addressFields_phone', f'{phoneNumber}'),
-            ('dwfrm_billing_billingAddress_email_emailAddress', 'evstwo@gmail.com'),
+            ('dwfrm_billing_billingAddress_email_emailAddress', ''),
             ('dwfrm_billing_securekey', f'{billingSecure}'),
             ('dwfrm_billing_securekey', f'{billingSecure}'),
             ('dwfrm_singleshipping_securekey', f'{shippingSecure}'),
@@ -191,7 +191,7 @@ def main():
             ('dwfrm_billing_applyBillingAndPayment', ''),
             ('dwfrm_billing_paymentMethods_selectedPaymentMethodID', 'CREDIT_CARD'),
             ('dwfrm_billing_paymentMethods_creditCard_type', 'Visa'),
-            ('dwfrm_billing_paymentMethods_creditCard_owner', 'Evan Wohl'),
+            ('dwfrm_billing_paymentMethods_creditCard_owner', 'Evan'),
             ('dwfrm_billing_paymentMethods_creditCard_number', f'{cc}'),
             ('dwfrm_billing_paymentMethods_creditCard_month', f'{expMo}'),
             ('dwfrm_billing_paymentMethods_creditCard_year', f'{expYr}'),
@@ -221,7 +221,7 @@ def main():
         data = {
             'dwfrm_billing_paymentMethods_selectedPaymentMethodID': 'CREDIT_CARD',
             'dwfrm_billing_paymentMethods_creditCard_type': 'Visa',
-            'dwfrm_billing_paymentMethods_creditCard_owner': 'Evan Wohl',
+            'dwfrm_billing_paymentMethods_creditCard_owner': 'Evan',
             'dwfrm_billing_paymentMethods_creditCard_number': f'************{cc_last4}',
             'dwfrm_billing_paymentMethods_creditCard_month': f'{expMo}',
             'dwfrm_billing_paymentMethods_creditCard_year': f'{expYr}',
@@ -244,11 +244,11 @@ def main():
         ip = splitproxy[0]
         port = splitproxy[1]
         proxies = {
-            'http': f'http://gwtucky:diesel@{ip}:{port}',
-            'https': f'https://gwtucky:diesel@{ip}:{port}',
+            'http': f'http://user:pass@{ip}:{port}',
+            'https': f'https://user:pass@{ip}:{port}',
         }
         s.proxies = proxies
-        cards = ['4060688031226021:2/2022:187', '4147202292745559:1/2025:200']
+        cards = ['4060699459226021:2/2022:187', '4143974592745559:1/2025:200'] #fake card numbers
         cardInfo = random.choice(cards)
         cardSplit = cardInfo.split(':')
         name = names.get_full_name(gender='male')
@@ -262,9 +262,9 @@ def main():
         expMo = splitexp[0]
         expYr = splitexp[1]
         cvv = cardSplit[2]
-        addy = '21 Quaker Lane'
-        city = 'Chappaqua'
-        postal = '10514-1409'
+        addy = ''
+        city = ''
+        postal = ''
         state = 'NY'
         def random_with_N_digits(n):
             range_start = 10 ** (n - 1)
